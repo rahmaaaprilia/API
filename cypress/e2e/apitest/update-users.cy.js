@@ -1,4 +1,4 @@
-describe('Create New User', () => {
+describe('Update User', () => {
     it("Successfully update user", () => {
         const requestBody = {
             "name": "Avril",
