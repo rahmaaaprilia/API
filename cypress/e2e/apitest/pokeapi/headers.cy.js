@@ -42,7 +42,17 @@ describe('Automation API with Pokeapi', () => {
             url: 'https://pokeapi.co/api/v2/pokemon/ditto',
             body: requestBody
         }).then((response => {
+            expect(response.status).equal(200)
             expect(response.body.abilities[0].ability.name).to.eq(requestBody.name)
         }))
+    });
+
+    it('Successfully negative response', () => {
+        cy.request({
+            method: 'GET',
+            url: 'https://pokeapi.co/api/v2/pokemon/eduwork',
+            failOnStatusCode: false
+        }).as('eduwork')
+        cy.get('@eduwork').its('status').should('equal', 404)
     });
 });
